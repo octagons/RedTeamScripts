@@ -1,9 +1,10 @@
 
 on beacon_initial {
+        chdir('/root/RedTeamScripts');
         local('$host $ip $os $ver');
         $host = beacon_info($1, "computer");
         $ip = beacon_info($1, "internal");
         $os = beacon_info($1, "os");
         $ver = beacon_info($1, "ver");
-        exec("/root/RedTeamScripts/alert_beacon.py --host " . $host . " --ip " . $ip . " --os " . $os . " --version " . $ver);
+        exec("python alert_beacon.py --host " . $host . " --ip " . $ip . " --os " . $os . " --version " . $ver, $null, cwd());
 }
