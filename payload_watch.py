@@ -5,12 +5,6 @@ ip_re = re.compile("(\d{1,3}\.){3}\d{1,3}")
 payload_re = re.compile("^.+\.hta.+$")
 headers = {'Content-Type' : 'application/x-www-form-urlencoded'}
 
-# Format expected for config:
-# usertokens:
-#	'uthisisapushovertoken' : 'Bob User'
-#	'uthisisanothertokenok'	: 'Joe Hackerman'
-# apptoken:
-#	'aathisismyapptokenlol'
 try:
 	conf = yaml.safe_load(open('config.yaml'))
 except IOError as e:
