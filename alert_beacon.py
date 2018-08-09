@@ -8,12 +8,6 @@ parser.add_argument('--version')
 
 args = parser.parse_args()
 
-# Format expected for config:
-# usertokens:
-#	'uthisisapushovertoken' : 'Bob User'
-#	'uthisisanothertokenok'	: 'Joe Hackerman'
-# apptoken:
-#	'aathisismyapptokenlol'
 try:
 	conf = yaml.safe_load(open('config.yaml'))
 except IOError as e:
