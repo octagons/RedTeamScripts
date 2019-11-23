@@ -36,7 +36,6 @@ try:
 			elif ip_result and not payload_result:
 				for usertoken in conf['usertokens'].keys():
 					if ip_result.group() not in source_ips:
-						source_ips.append(ip_result.group())
 						ip_info = requests.get("https://ipinfo.io/%s" % ip_result.group().strip()).json()
 						payload = {'token' : conf['apptoken']}
 						payload.update({'user' : usertoken})
@@ -44,6 +43,7 @@ try:
 						payload.update({'sound' : 'cashregister'})
 						payload.update({'message' : 'IP: %s | Location: %s, %s | Org: %s' % (ip_info['ip'], ip_info['city'], ip_info['region'], ip_info['org'])})
 						r = requests.post('https://api.pushover.net/1/messages', headers=headers, data=payload)
+                                source_ips.append(ip_result.group())
 		time.sleep(1)
 except IOError as e:
 	quit("Quitting due to IOError: %s." % e.strerror)
